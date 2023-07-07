@@ -1,21 +1,29 @@
-let days = 1000 * 60 * 60 * 24;  /// ms * sec * mins * hours 
-let hours = 1000 * 60 * 60;
-let minutes = 1000 * 60 ;
-let seconds = 1000;
 
+const dimensions = [
+    days = 1000 * 60 * 60 * 24,
+    hours = 1000 * 60 * 60,
+    minutes = 1000 * 60,
+    seconds = 1000
+]
 
-function timePeriod(a, b, period) {
+function timePeriod(start, end, dimension) {
+
+    const period = dimensions[dimension];
+
+    if (!period || isNaN(Date.parse(start)) || isNaN(Date.parse(end))){
+        return 'Invalid input params';
+    }
     
-    const endDate = new Date(b);
-    const startDate = new Date(a);
+    const endDate = new Date(end);
+    const startDate = new Date(start);
 
     const daysBetween = (Math.ceil(Math.abs(endDate.getTime() - startDate.getTime())) / period);
 
-    console.log(daysBetween);
+    console.log(`${daysBetween} ${dimension}`);
 
 }
 
-timePeriod('12.06.2020', '12.03.2000', days);
+timePeriod('12.06.2020', '12.03.2000', 'days');
 
 
 
@@ -81,6 +89,10 @@ function iterativeOddSumTo(number) {
 };
 iterativeOddSumTo(20);
 iterativeOddSumTo(5);
+
+
+
+
 
 
 
